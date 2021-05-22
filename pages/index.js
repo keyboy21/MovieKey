@@ -2,6 +2,7 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Results from "../components/Results";
+import requests from "../utils/requests";
 
 export default function Home({ results }) {
   return (
@@ -13,17 +14,17 @@ export default function Home({ results }) {
       </Head>
       <Header />
       <Navbar />
-      <Results results={results} />
+      <Results requests={results} />
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
   const genre = context.query.genre;
-  const requests = fetch(
+  const request = await fetch(
     `https://api.tmdb.org/3${
       requests[genre]?.url || requests.fetchTrending.url
     }`
   ).then((res) => res.json());
-  return { props: { results: requests } };
+  return { props: { results: request.results } };
 }

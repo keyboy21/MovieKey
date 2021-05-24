@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { ThumbUpIcon } from "@heroicons/react/outline";
 import { forwardRef } from "react";
-const Thumbnail = forwardRef(({ result }, ref) => {
-  const BASE_URL = "https://image.tmdb.org/t/p/original/";
+const Thumb = forwardRef(({ result }, ref) => {
+  const BASE_URL = "https://image.tmdb.org/t/p/original";
   return (
     <div
       ref={ref}
@@ -10,7 +10,10 @@ const Thumbnail = forwardRef(({ result }, ref) => {
     >
       <Image
         layout="responsive"
-        src={`${BASE_URL}${result.backdrop_path || result.poster_path}`}
+        src={
+          `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
+          `${BASE_URL}${result.poster_path}`
+        }
         height={1080}
         width={1920}
       />
@@ -21,13 +24,15 @@ const Thumbnail = forwardRef(({ result }, ref) => {
         {result.title || result.original_name}
       </h2>
       <p className="flex items-center opacity-0 group-hover:opacity-100">
-        {result.media_type && `${result.media_type}+`}{" "}
-        {result.release_date || result.first_air_date}+{""}
+        Popularity {result.popularity && `${result.popularity}`}{" "}
+        {result.release_date || result.first_air_date}
+        {""}
         <ThumbUpIcon className="h-5 mx-2" />
         {result.vote_count}
       </p>
+      <p>{result.overview}</p>
     </div>
   );
 });
 
-export default Thumbnail;
+export default Thumb;

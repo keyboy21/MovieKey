@@ -4,6 +4,25 @@
 
 @layer base {
   body {
-    @apply bg-blue-700 text-gray-300;
+    @apply bg-green-700 text-white;
   }
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+  height: 15px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: #f7f4ed;
+}
+::-webkit-scrollbar-thumb {
+  background: #e0cbcb;
+  border-radius: 100vh;
+  border: 3px solid #f6f7ed;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f70202ff;
 }

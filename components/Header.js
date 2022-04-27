@@ -26,7 +26,7 @@ export default function Header() {
       </div>
       <Image
         className="object-contain bg-black-900"
-        src="/ba2570f3ee5543af9aa726a266e3095a.png"
+        src="/logo.png"
         width={200}
         height={100}
       />
